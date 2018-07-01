@@ -25,9 +25,7 @@ ehthumbs.db
 Icon?
 Thumbs.db
 *.swp
-**/yolo2-obj.we**
-/yolo2-obj.we**
-*/yolo2-obj.we**
+yolo2-obj.weights
 backup/**
 backup_old/**
 yolov3.weights
