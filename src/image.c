@@ -214,10 +214,14 @@ void draw_bbox(image a, box bbox, int w, float r, float g, float b)
     int top   = (bbox.y-bbox.h/2)*a.h;
     int bot   = (bbox.y+bbox.h/2)*a.h;
 
+    
     int i;
+    
     for(i = 0; i < w; ++i){
         draw_box(a, left+i, top+i, right-i, bot-i, r, g, b);
     }
+    
+    
 }
 
 image **load_alphabet()
@@ -233,6 +237,8 @@ image **load_alphabet()
             alphabets[j][i] = load_image_color(buff, 0, 0);
         }
     }
+    
+    
     return alphabets;
 }
 
@@ -285,11 +291,17 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             int top   = (b.y-b.h/2.)*im.h;
             int bot   = (b.y+b.h/2.)*im.h;
 
-            if(left < 0) left = 0;
             if(right > im.w-1) right = im.w-1;
             if(top < 0) top = 0;
             if(bot > im.h-1) bot = im.h-1;
 
+            printf("%d  %d %d %d", left, right, top, bot);
+            FILE *f = fopen("result_coordinate.txt", "w");
+
+
+            fprintf(f,"%f  %f %f %f", left, right, top, bot);
+
+            fclose(f);
             draw_box_width(im, left, top, right, bot, width, red, green, blue);
             if (alphabet) {
                 image label = get_label(alphabet, labelstr, (im.h*.03));
